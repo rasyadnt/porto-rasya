@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moch. Rasya Adinata | SOC L1 Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* === TEMA & VARIABEL === */
+        :root {
+            --bg-body: #F8FAFC;
+            --bg-nav: rgba(255, 255, 255, 0.85);
+            --bg-card: #FFFFFF;
+            --text-main: #0F172A;
+            --text-muted: #64748B;
+            --primary: #4F46E5; /* Indigo */
+            --primary-hover: #4338CA;
+            --accent: #0EA5E9; /* Sky Blue */
+            --border-color: #E2E8F0;
+            --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.05);
+            --radius: 20px;
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #0F172A;
+            --bg-nav: rgba(15, 23, 42, 0.85);
+            --bg-card: #1E293B;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border-color: #334155;
+            --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.3);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.4);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--bg-body); color: var(--text-main); line-height: 1.7; transition: background-color 0.3s, color 0.3s; }
+        a { text-decoration: none; color: inherit; }
+
+        /* === NAVBAR & DARK MODE TOGGLE === */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 15px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: var(--bg-nav); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            z-index: 1000; border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; }
+        .logo span { color: var(--primary); }
+        .nav-links { display: flex; gap: 30px; list-style: none; align-items: center; }
+        .nav-links a { font-weight: 600; font-size: 0.95rem; color: var(--text-muted); transition: color 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+        
+        .theme-toggle {
+            background: none; border: none; cursor: pointer;
+            font-size: 1.5rem; padding: 5px; color: var(--text-main);
+            transition: transform 0.3s;
+        }
+        .theme-toggle:hover { transform: rotate(15deg); }
+
+        /* === GENERAL LAYOUT === */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        section { padding: 100px 0; }
+        .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
+        .section-subtitle { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 50px; }
+        
+        /* Animasi Scroll */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* === HERO HEADER === */
+        #hero {
+            min-height: 100vh; display: flex; align-items: center;
+            padding-top: 80px; position: relative; overflow: hidden;
+        }
+        /* Background grid estetik */
+        #hero::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+            background-size: 30px 30px; opacity: 0.5; z-index: -1;
+        }
+        .hero-content { display: flex; align-items: center; gap: 50px; justify-content: space-between; width: 100%; }
+        
+        .hero-text { flex: 1; }
+        .badge {
+            display: inline-block; padding: 8px 16px; border-radius: 20px;
+            background: rgba(79, 70, 229, 0.1); color: var(--primary); font-weight: 700; font-size: 0.9rem; margin-bottom: 20px; border: 1px solid rgba(79, 70, 229, 0.2);
+        }
+        .hero-text h1 {
+            font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1.5px;
+            background: linear-gradient(135deg, var(--text-main), var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .hero-text p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 30px; max-width: 500px; }
+        
+        .btn { display: inline-block; padding: 16px 32px; border-radius: 12px; font-weight: 600; transition: all 0.3s; cursor: pointer; }
+        .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3); }
+        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-3px); box-shadow: 0 15px 25px rgba(79, 70, 229, 0.4); color: #fff; }
+
+        .hero-image { flex: 1; display: flex; justify-content: flex-end; }
+        .profile-pic {
+            width: 350px; height: 350px; border-radius: 30px;
+            background: linear-gradient(135deg, var(--border-color), var(--bg-card));
+            box-shadow: var(--shadow-lg); border: 8px solid var(--bg-card);
+            object-fit: cover; transform: rotate(3deg); transition: transform 0.5s;
+        }
+        .profile-pic:hover { transform: rotate(0deg) scale(1.02); }
+
+        /* === PROFILE & SKILLS === */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .card { background: var(--bg-card); padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); }
+        
+        .skill-item { margin-bottom: 20px; }
+        .skill-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 600; }
+        .skill-bar { width: 100%; height: 10px; background: var(--border-color); border-radius: 5px; overflow: hidden; }
+        .skill-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--primary)); border-radius: 5px; }
+
+        /* === TIMELINE (EXPERIENCE & EDUCATION) === */
+        .timeline { position: relative; padding-left: 30px; }
+        .timeline::before {
+            content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 3px;
+            background: var(--border-color); border-radius: 3px;
+        }
+        .timeline-item { position: relative; margin-bottom: 40px; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -36px; top: 5px; width: 15px; height: 15px;
+            background: var(--primary); border-radius: 50%; border: 4px solid var(--bg-card); box-shadow: 0 0 0 2px var(--primary);
+        }
+        .timeline-date { font-weight: 700; color: var(--primary); margin-bottom: 5px; font-size: 0.95rem; }
+        .timeline-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 5px; }
+        .timeline-org { color: var(--text-muted); font-weight: 500; margin-bottom: 15px; font-size: 0.95rem; }
+
+        /* === WRITE-UPS (DRIVE BUTTON) === */
+        .drive-banner {
+            background: linear-gradient(135deg, #10B981, #059669); padding: 60px; border-radius: var(--radius);
+            color: white; text-align: center; box-shadow: 0 20px 40px rgba(16, 185, 129, 0.3); position: relative; overflow: hidden;
+        }
+        .drive-banner h2 { font-size: 2.5rem; margin-bottom: 15px; font-weight: 800; }
+        .drive-banner p { font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9; }
+        .btn-drive {
+            display: inline-flex; align-items: center; gap: 10px; background: white; color: #059669;
+            padding: 18px 40px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; transition: all 0.3s;
+        }
+        .btn-drive:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+        .btn-drive svg { width: 24px; height: 24px; }
+
+        /* === CONTACT === */
+        .contact-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 30px; align-items: stretch; }
+        .contact-card { background: var(--bg-card); padding: 40px; border-radius: 30px; box-shadow: 0 22px 45px rgba(15, 23, 42, 0.08); border: none; }
+        .contact-card.highlight { background: rgba(79, 70, 229, 0.08); box-shadow: 0 20px 40px rgba(79, 70, 229, 0.08); }
+        .contact-card h4 { font-size: 1.35rem; margin-bottom: 15px; }
+        .contact-card p { color: var(--text-muted); line-height: 1.8; }
+        .contact-email {
+            display: inline-flex; align-items: center; gap: 12px; margin-top: 24px;
+            color: var(--primary); font-weight: 700; font-size: 1.05rem; background: rgba(79, 70, 229, 0.12);
+            padding: 14px 18px; border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(79, 70, 229, 0.18);
+        }
+        .contact-email:hover { background: rgba(79, 70, 229, 0.18); }
+        .contact-email svg { width: 22px; height: 22px; flex-shrink: 0; }
+        .contact-form { display: flex; flex-direction: column; gap: 20px; }
+        .contact-form input, .contact-form textarea {
+            padding: 18px; border-radius: 14px; border: 1px solid var(--border-color); background: var(--bg-body);
+            color: var(--text-main); font-size: 1rem; transition: border-color 0.3s, box-shadow 0.3s; outline: none;
+        }
+        .contact-form input:focus, .contact-form textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12); }
+        .contact-form button { width: 100%; border: none; }
+        
+        /* Footer */
+        footer { text-align: center; padding: 40px 0; color: var(--text-muted); border-top: 1px solid var(--border-color); margin-top: 50px;}
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero-content { flex-direction: column-reverse; text-align: center; }
+            .hero-text p { margin: 0 auto 30px; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .nav-links { display: none; } /* Hamburger bisa ditambahkan nanti */
+            .hero-text h1 { font-size: 3rem; }
+            .profile-pic { width: 250px; height: 250px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">Porto Rasya<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#profile">Profil</a></li>
+            <li><a href="#experience">Pengalaman</a></li>
+            <li><a href="#writeups">Portofolio</a></li>
+            <li><button class="theme-toggle" id="themeBtn">🌙</button></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <header id="hero">
+            <div class="hero-content">
+                <div class="hero-text reveal">
+                    <span class="badge">Security Analyst</span>
+                    <h1>Network Configuration. Threat Monitoring.</h1>
+                    <p>Halo, saya <strong>Moch Rasya Adinata</strong> berasal dari Surabaya. Sekarang saya bersekolah di SMK Telkom Malang dengan jurusan Teknik Komputer dan Jaringan expertise Cyber Security.</p>
+                    <a href="#writeups" class="btn btn-primary">Lihat Write Ups Saya</a>
+                </div>
+                <div class="hero-image reveal">
+                    <img src="img_20260422_071405.webp" alt="Moch Rasya" class="profile-pic">
+                </div>
+            </div>
+        </header>
+
+        <section id="profile" class="reveal">
+            <div class="section-title">Profil & Keahlian</div>
+            <p class="section-subtitle">Kombinasi operasional IT Support, manajemen jaringan, dan respons cepat terhadap ancaman siber.</p>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Tentang Saya</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 15px;">Halo, saya Rasya, saat ini saya menempuh pendidikan di SMK Telkom Malang jurusan Teknik Komputer dan Jaringan dengan fokus utama pada Cyber Security. Saya memiliki passion yang besar di dunia teknologi, didukung dengan pengalaman langsung di lapangan dalam menangani networking dan keamanan siber selama magang di PT PLN Nusantara Power.</p>
+                    <p style="color: var(--text-muted);">Melalui pengalaman saya sebagai IT Support dan SOC Analyst L1 di sana, saya terbiasa menjaga stabilitas infrastruktur jaringan sekaligus memantau dan memitigasi ancaman keamanan secara responsif. Saya selalu antusias untuk terus belajar dan berkontribusi di industri IT.</p>
+                </div>
+                <div class="card">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Technical Skills</h3>
+                    
+                    <div class="skill-item">
+                        <div class="skill-info"><span>SIEM (Wazuh, Splunk)</span><span>90%</span></div>
+                        <div class="skill-bar"><div class="skill-fill" style="width: 90%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Network Analysis (Wireshark)</span><span>85%</span></div>
+                        <div class="skill-bar"><div class="skill-fill" style="width: 85%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Log & Incident Analysis</span><span>85%</span></div>
+                        <div class="skill-bar"><div class="skill-fill" style="width: 85%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Linux Administration</span><span>80%</span></div>
+                        <div class="skill-bar"><div class="skill-fill" style="width: 80%;"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="reveal">
+            <div class="grid-2">
+                <div>
+                    <div class="section-title" style="font-size: 2rem;">Pendidikan</div>
+                    <p class="section-subtitle">Latar belakang akademis.</p>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2023 - 2026</div>
+                            <div class="timeline-title">Teknik Komputer dan Jaringan (TKJ)</div>
+                            <div class="timeline-org">SMK Telkom Malang</div>
+                            <p style="color: var(--text-muted);">Mempelajari fondasi arsitektur networking, praktik membangun dan mengelola server, konfigurasi router dan switch, serta melakukan penetration testing untuk menguji keamanan server.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="section-title" style="font-size: 2rem;">Pengalaman</div>
+                    <p class="section-subtitle">Praktikum dan proyek keamanan.</p>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Saat Ini</div>
+                            <div class="timeline-title">SOC L1 Analyst</div>
+                            <div class="timeline-org">Intern PT PLN NUSANTARA POWER</div>
+                            <p style="color: var(--text-muted);">Membangun lab keamanan sendiri, melakukan simulasi serangan seperti Brute-Force dan eksploitasi kerentanan HTTP, lalu menganalisis jejaknya menggunakan alat monitoring SIEM.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Tahun Sebelumnya</div>
+                            <div class="timeline-title">IT Support</div>
+                            <div class="timeline-org">Intern PT PLN NUSANTARA POWER</div>
+                            <p style="color: var(--text-muted);">Bertanggung jawab atas troubleshooting jaringan, konfigurasi firewall dasar, pemeliharaan dan perbaikan hardware komputer & printer, hingga proses instalasi infrastruktur visual seperti video wall.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="writeups" class="reveal">
+            <div class="drive-banner">
+                <h2>Laporan Keamanan & Write-Ups</h2>
+                <p>Dokumentasi adalah kunci dalam SOC. Lihat koleksi lengkap laporan analisis ancaman, pemindaian kerentanan, dan mitigasi yang telah saya buat.</p>
+                <a href="https://drive.google.com/drive/folders/1SZ_YHYOTnCk5y8CTnKnuemf41f4xeHjE?usp=sharing" target="_blank" class="btn-drive">
+                    <svg viewBox="0 0 87.3 78" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/><path d="m43.65 23.2-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44c-.8 1.45-1.2 3-1.2 4.55h27.5z" fill="#00ac47"/><path d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.502l13.752 23.8z" fill="#ea4335"/><path d="m43.65 23.2h27.5c0-1.55-.4-3.1-1.2-4.5l-13.75-23.8c-.8-1.4-1.95-2.5-3.3-3.3z" fill="#00832d"/><path d="m43.65 53.05-13.75 23.8c1.35.8 2.5 1.9 3.3 3.3h27.5c0-1.55-.4-3.1-1.2-4.5z" fill="#2684fc"/><path d="m71.15 23.2-13.75 23.85h27.5c0-1.55-.4-3.1-1.2-4.5l-10.25-17.75-3.5-6.1c-.8-1.4-1.95-2.5-3.3-3.3z" fill="#ffba00"/>
+                    </svg>
+                    Akses Google Drive
+                </a>
+            </div>
+        </section>
+
+        <section id="contact" class="reveal">
+            <div class="section-title">Mari Berdiskusi</div>
+            <p class="section-subtitle">Punya pertanyaan seputar analisis log atau ingin berkolaborasi? Jangan ragu untuk mengirim pesan.</p>
+            <div class="contact-grid">
+                <div class="contact-card highlight">
+                    <h4>Kontak Langsung</h4>
+                    <p>Untuk respons tercepat, kirim email langsung ke alamat di bawah. Saya siap membantu terkait analisis ancaman, respon insiden, dan penguatan keamanan jaringan.</p>
+                    <a href="mailto:rasyaadinata213@gmail.com" class="contact-email">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.5 5.5H3.5C2.94772 5.5 2.5 5.94772 2.5 6.5V17.5C2.5 18.0523 2.94772 18.5 3.5 18.5H20.5C21.0523 18.5 21.5 18.0523 21.5 17.5V6.5C21.5 5.94772 21.0523 5.5 20.5 5.5Z" fill="#D93025"/>
+                            <path d="M3.5 6.5L12 12.5L20.5 6.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M3.5 17.5L12 11.5L20.5 17.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        rasyaadinata213@gmail.com
+                    </a>
+                </div>
+                <div class="contact-card">
+                    <form class="contact-form" onsubmit="event.preventDefault(); alert('Ini simulasi form, silakan klik email langsung di sebelah kiri.');">
+                        <input type="text" placeholder="Nama Lengkap" required>
+                        <input type="email" placeholder="Alamat Email" required>
+                        <textarea rows="4" placeholder="Pesan Anda" required></textarea>
+                        <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 rasya adinata</p>
+        </footer>
+    </div>
+
+    <script>
+        // 1. Fitur Dark Mode Toggle
+        const themeBtn = document.getElementById('themeBtn');
+        const html = document.documentElement;
+        
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                html.setAttribute('data-theme', 'dark');
+                themeBtn.textContent = '☀️'; // Ikon matahari untuk dark mode
+            } else {
+                html.setAttribute('data-theme', 'light');
+                themeBtn.textContent = '🌙'; // Ikon bulan untuk light mode
+            }
+        });
+
+        // 2. Animasi Scroll (Reveal Elements)
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // Jarak sebelum elemen muncul
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Panggil sekali saat load
+    </script>
+</body>
+</html>
