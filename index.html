@@ -13,9 +13,9 @@
             --bg-card: #FFFFFF;
             --text-main: #0F172A;
             --text-muted: #64748B;
-            --primary: #4F46E5; /* Indigo */
+            --primary: #4F46E5;
             --primary-hover: #4338CA;
-            --accent: #0EA5E9; /* Sky Blue */
+            --accent: #0EA5E9;
             --border-color: #E2E8F0;
             --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.05);
             --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.05);
@@ -60,34 +60,17 @@
 
         /* === LANGUAGE SWITCHER === */
         .lang-switcher {
-            display: flex;
-            align-items: center;
-            background: rgba(100, 116, 139, 0.1);
-            border-radius: 20px;
-            padding: 4px;
-            margin: 0 10px;
+            display: flex; align-items: center; background: rgba(100, 116, 139, 0.1);
+            border-radius: 20px; padding: 4px; margin: 0 10px;
         }
         .lang-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            font-weight: 700;
-            cursor: pointer;
-            padding: 6px 12px;
-            border-radius: 16px;
-            transition: all 0.3s ease;
-            font-family: inherit;
+            background: transparent; border: none; color: var(--text-muted);
+            font-size: 0.8rem; font-weight: 700; cursor: pointer; padding: 6px 12px;
+            border-radius: 16px; transition: all 0.3s ease; font-family: inherit;
         }
         .lang-btn:hover { color: var(--text-main); }
-        .lang-btn.active {
-            background: var(--bg-card);
-            color: var(--primary);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        [data-theme="dark"] .lang-btn.active {
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
+        .lang-btn.active { background: var(--bg-card); color: var(--primary); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        [data-theme="dark"] .lang-btn.active { box-shadow: 0 2px 4px rgba(0,0,0,0.3); }
 
         /* === GENERAL LAYOUT === */
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
@@ -95,7 +78,6 @@
         .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
         .section-subtitle { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 50px; }
         
-        /* Animasi Scroll */
         .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -138,13 +120,12 @@
         /* === PROFILE & SKILLS === */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
         .card { background: var(--bg-card); padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); }
-        
         .skill-item { margin-bottom: 20px; }
         .skill-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 600; }
         .skill-bar { width: 100%; height: 10px; background: var(--border-color); border-radius: 5px; overflow: hidden; }
         .skill-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--primary)); border-radius: 5px; }
 
-        /* === TIMELINE (EXPERIENCE & EDUCATION) === */
+        /* === TIMELINE === */
         .timeline { position: relative; padding-left: 30px; }
         .timeline::before {
             content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 3px;
@@ -159,7 +140,7 @@
         .timeline-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 5px; }
         .timeline-org { color: var(--text-muted); font-weight: 500; margin-bottom: 15px; font-size: 0.95rem; }
 
-        /* === WRITE-UPS (DRIVE BUTTON) === */
+        /* === WRITE-UPS === */
         .drive-banner {
             background: linear-gradient(135deg, #10B981, #059669); padding: 60px; border-radius: var(--radius);
             color: white; text-align: center; box-shadow: 0 20px 40px rgba(16, 185, 129, 0.3); position: relative; overflow: hidden;
@@ -194,15 +175,13 @@
         .contact-form input:focus, .contact-form textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12); }
         .contact-form button { width: 100%; border: none; }
         
-        /* Footer */
         footer { text-align: center; padding: 40px 0; color: var(--text-muted); border-top: 1px solid var(--border-color); margin-top: 50px;}
 
-        /* Responsive */
         @media (max-width: 900px) {
             .hero-content { flex-direction: column-reverse; text-align: center; }
             .hero-text p { margin: 0 auto 30px; }
             .grid-2 { grid-template-columns: 1fr; }
-            .nav-links { display: none; } /* Hamburger bisa ditambahkan nanti */
+            .nav-links { display: none; }
             .hero-text h1 { font-size: 3rem; }
             .profile-pic { width: 250px; height: 250px; }
         }
@@ -213,10 +192,10 @@
     <nav>
         <a href="#" class="logo">Porto Rasya<span>.</span></a>
         <ul class="nav-links">
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#profile">Profile</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#writeups">Portofolio</a></li>
+            <li><a href="#hero" class="lang" data-id="Home" data-en="Home">Home</a></li>
+            <li><a href="#profile" class="lang" data-id="Profil" data-en="Profile">Profil</a></li>
+            <li><a href="#experience" class="lang" data-id="Pengalaman" data-en="Experience">Pengalaman</a></li>
+            <li><a href="#writeups" class="lang" data-id="Portofolio" data-en="Portfolio">Portofolio</a></li>
             
             <li>
                 <div class="lang-switcher">
@@ -234,9 +213,9 @@
             <div class="hero-content">
                 <div class="hero-text reveal">
                     <span class="badge">Security Analyst</span>
-                    <h1>Network Configuration. Threat Monitoring.</h1>
-                    <p>Halo, saya <strong> Moch Rasya Adinata </strong> berasal dari Surabaya. Saya bersekolah di SMK Telkom Malang jenjang akhir dengan jurusan Teknik Komputer dan Jaringan expertise Cyber Security.</p>
-                    <a href="#writeups" class="btn btn-primary">Write up Saya</a>
+                    <h1 class="lang" data-id="Konfigurasi Jaringan. Pemantauan Ancaman." data-en="Network Configuration. Threat Monitoring.">Konfigurasi Jaringan. Pemantauan Ancaman.</h1>
+                    <p class="lang" data-id="Halo, saya <strong> Moch Rasya Adinata </strong> berasal dari Surabaya. Saya bersekolah di SMK Telkom Malang jenjang akhir dengan jurusan Teknik Komputer dan Jaringan expertise Cyber Security." data-en="Hello, I am <strong> Moch Rasya Adinata </strong> from Surabaya. I am a final-year student at SMK Telkom Malang majoring in Computer and Network Engineering with an expertise in Cyber Security.">Halo, saya <strong> Moch Rasya Adinata </strong> berasal dari Surabaya. Saya bersekolah di SMK Telkom Malang jenjang akhir dengan jurusan Teknik Komputer dan Jaringan expertise Cyber Security.</p>
+                    <a href="#writeups" class="btn btn-primary lang" data-id="Write up Saya" data-en="My Write-ups">Write up Saya</a>
                 </div>
                 <div class="hero-image reveal">
                     <img src="img_20260422_071405.webp" alt="Moch Rasya" class="profile-pic">
@@ -245,14 +224,14 @@
         </header>
 
         <section id="profile" class="reveal">
-            <div class="section-title">Profil & Keahlian</div>
-            <p class="section-subtitle">Kombinasi operasional IT Support, manajemen jaringan, dan respons cepat terhadap ancaman siber.</p>
+            <div class="section-title lang" data-id="Profil & Keahlian" data-en="Profile & Skills">Profil & Keahlian</div>
+            <p class="section-subtitle lang" data-id="Kombinasi operasional IT Support, manajemen jaringan, dan respons cepat terhadap ancaman siber." data-en="A combination of IT Support operations, network management, and rapid response to cyber threats.">Kombinasi operasional IT Support, manajemen jaringan, dan respons cepat terhadap ancaman siber.</p>
             
             <div class="grid-2">
                 <div class="card">
-                    <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Tentang Saya</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 15px;">Halo, saya Rasya, saat ini saya menempuh pendidikan di SMK Telkom Malang jurusan Teknik Komputer dan Jaringan dengan fokus utama pada Cyber Security. Saya memiliki passion yang besar di dunia teknologi, didukung dengan pengalaman langsung di lapangan dalam menangani networking dan keamanan siber selama magang di PT PLN Nusantara Power.</p>
-                    <p style="color: var(--text-muted);">Melalui pengalaman saya sebagai IT Support dan SOC Analyst L1 di sana, saya terbiasa menjaga stabilitas infrastruktur jaringan sekaligus memantau dan memitigasi ancaman keamanan secara responsif. Saya selalu antusias untuk terus belajar dan berkontribusi di industri IT.</p>
+                    <h3 class="lang" style="font-size: 1.5rem; margin-bottom: 20px;" data-id="Tentang Saya" data-en="About Me">Tentang Saya</h3>
+                    <p class="lang" style="color: var(--text-muted); margin-bottom: 15px;" data-id="Halo, saya Rasya, saat ini saya menempuh pendidikan di SMK Telkom Malang jurusan Teknik Komputer dan Jaringan dengan fokus utama pada Cyber Security. Saya memiliki passion yang besar di dunia teknologi, didukung dengan pengalaman langsung di lapangan dalam menangani networking dan keamanan siber selama magang di PT PLN Nusantara Power." data-en="Hello, I'm Rasya. Currently, I am studying at SMK Telkom Malang majoring in Computer and Network Engineering with a main focus on Cyber Security. I have a huge passion for technology, supported by hands-on experience in networking and cyber security during my internship at PT PLN Nusantara Power.">Halo, saya Rasya, saat ini saya menempuh pendidikan di SMK Telkom Malang jurusan Teknik Komputer dan Jaringan dengan fokus utama pada Cyber Security. Saya memiliki passion yang besar di dunia teknologi, didukung dengan pengalaman langsung di lapangan dalam menangani networking dan keamanan siber selama magang di PT PLN Nusantara Power.</p>
+                    <p class="lang" style="color: var(--text-muted);" data-id="Melalui pengalaman saya sebagai IT Support dan SOC Analyst L1 di sana, saya terbiasa menjaga stabilitas infrastruktur jaringan sekaligus memantau dan memitigasi ancaman keamanan secara responsif. Saya selalu antusias untuk terus belajar dan berkontribusi di industri IT." data-en="Through my experience as an IT Support and L1 SOC Analyst there, I am accustomed to maintaining network infrastructure stability while responsively monitoring and mitigating security threats. I am always enthusiastic to keep learning and contributing to the IT industry.">Melalui pengalaman saya sebagai IT Support dan SOC Analyst L1 di sana, saya terbiasa menjaga stabilitas infrastruktur jaringan sekaligus memantau dan memitigasi ancaman keamanan secara responsif. Saya selalu antusias untuk terus belajar dan berkontribusi di industri IT.</p>
                 </div>
                 <div class="card">
                     <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Technical Skills</h3>
@@ -280,33 +259,33 @@
         <section id="experience" class="reveal">
             <div class="grid-2">
                 <div>
-                    <div class="section-title" style="font-size: 2rem;">Pendidikan</div>
-                    <p class="section-subtitle">Latar belakang akademis.</p>
+                    <div class="section-title lang" style="font-size: 2rem;" data-id="Pendidikan" data-en="Education">Pendidikan</div>
+                    <p class="section-subtitle lang" data-id="Latar belakang akademis." data-en="Academic background.">Latar belakang akademis.</p>
                     <div class="timeline">
                         <div class="timeline-item">
                             <div class="timeline-date">2023 - 2026</div>
-                            <div class="timeline-title">Teknik Komputer dan Jaringan (TKJ)</div>
+                            <div class="timeline-title lang" data-id="Teknik Komputer dan Jaringan (TKJ)" data-en="Computer and Network Engineering (TKJ)">Teknik Komputer dan Jaringan (TKJ)</div>
                             <div class="timeline-org">SMK Telkom Malang</div>
-                            <p style="color: var(--text-muted);">Mempelajari fondasi arsitektur networking, praktik membangun dan mengelola server, konfigurasi router dan switch, serta melakukan penetration testing untuk menguji keamanan server.</p>
+                            <p class="lang" style="color: var(--text-muted);" data-id="Mempelajari fondasi arsitektur networking, praktik membangun dan mengelola server, konfigurasi router dan switch, serta melakukan penetration testing untuk menguji keamanan server." data-en="Studied the foundations of network architecture, server management practices, router and switch configuration, and performed penetration testing to evaluate server security.">Mempelajari fondasi arsitektur networking, praktik membangun dan mengelola server, konfigurasi router dan switch, serta melakukan penetration testing untuk menguji keamanan server.</p>
                         </div>
                     </div>
                 </div>
                 
                 <div>
-                    <div class="section-title" style="font-size: 2rem;">Pengalaman</div>
-                    <p class="section-subtitle">Praktikum dan proyek keamanan.</p>
+                    <div class="section-title lang" style="font-size: 2rem;" data-id="Pengalaman" data-en="Experience">Pengalaman</div>
+                    <p class="section-subtitle lang" data-id="Praktikum dan proyek keamanan." data-en="Practicums and security projects.">Praktikum dan proyek keamanan.</p>
                     <div class="timeline">
                         <div class="timeline-item">
-                            <div class="timeline-date">Saat Ini</div>
+                            <div class="timeline-date lang" data-id="Saat Ini" data-en="Present">Saat Ini</div>
                             <div class="timeline-title">SOC L1 Analyst</div>
                             <div class="timeline-org">Intern PT PLN NUSANTARA POWER</div>
-                            <p style="color: var(--text-muted);">Membangun lab keamanan sendiri, melakukan simulasi serangan seperti Brute-Force dan eksploitasi kerentanan HTTP, lalu menganalisis jejaknya menggunakan alat monitoring SIEM.</p>
+                            <p class="lang" style="color: var(--text-muted);" data-id="Membangun lab keamanan sendiri, melakukan simulasi serangan seperti Brute-Force dan eksploitasi kerentanan HTTP, lalu menganalisis jejaknya menggunakan alat monitoring SIEM." data-en="Built a personal security lab, performed attack simulations such as Brute-Force and HTTP vulnerability exploitation, and analyzed the traces using SIEM monitoring tools.">Membangun lab keamanan sendiri, melakukan simulasi serangan seperti Brute-Force dan eksploitasi kerentanan HTTP, lalu menganalisis jejaknya menggunakan alat monitoring SIEM.</p>
                         </div>
                         <div class="timeline-item">
-                            <div class="timeline-date">Tahun Sebelumnya</div>
+                            <div class="timeline-date lang" data-id="Tahun Sebelumnya" data-en="Previous Year">Tahun Sebelumnya</div>
                             <div class="timeline-title">IT Support</div>
                             <div class="timeline-org">Intern PT PLN NUSANTARA POWER</div>
-                            <p style="color: var(--text-muted);">Bertanggung jawab atas troubleshooting jaringan, konfigurasi firewall dasar, pemeliharaan dan perbaikan hardware komputer & printer, hingga proses instalasi infrastruktur visual seperti video wall.</p>
+                            <p class="lang" style="color: var(--text-muted);" data-id="Bertanggung jawab atas troubleshooting jaringan, konfigurasi firewall dasar, pemeliharaan dan perbaikan hardware komputer & printer, hingga proses instalasi infrastruktur visual seperti video wall." data-en="Responsible for network troubleshooting, basic firewall configuration, computer & printer hardware maintenance, and visual infrastructure installation processes such as video walls.">Bertanggung jawab atas troubleshooting jaringan, konfigurasi firewall dasar, pemeliharaan dan perbaikan hardware komputer & printer, hingga proses instalasi infrastruktur visual seperti video wall.</p>
                         </div>
                     </div>
                 </div>
@@ -315,24 +294,24 @@
 
         <section id="writeups" class="reveal">
             <div class="drive-banner">
-                <h2>Laporan Keamanan & Write-Ups</h2>
-                <p>Dokumentasi adalah kunci dalam SOC. Lihat koleksi lengkap laporan analisis ancaman, pemindaian kerentanan, dan mitigasi yang telah saya buat.</p>
+                <h2 class="lang" data-id="Laporan Keamanan & Write-Ups" data-en="Security Reports & Write-Ups">Laporan Keamanan & Write-Ups</h2>
+                <p class="lang" data-id="Dokumentasi adalah kunci dalam SOC. Lihat koleksi lengkap laporan analisis ancaman, pemindaian kerentanan, dan mitigasi yang telah saya buat." data-en="Documentation is key in SOC. View my complete collection of threat analysis, vulnerability scanning, and mitigation reports.">Dokumentasi adalah kunci dalam SOC. Lihat koleksi lengkap laporan analisis ancaman, pemindaian kerentanan, dan mitigasi yang telah saya buat.</p>
                 <a href="https://drive.google.com/drive/folders/1SZ_YHYOTnCk5y8CTnKnuemf41f4xeHjE?usp=sharing" target="_blank" class="btn-drive">
                     <svg viewBox="0 0 87.3 78" xmlns="http://www.w3.org/2000/svg">
                         <path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/><path d="m43.65 23.2-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44c-.8 1.45-1.2 3-1.2 4.55h27.5z" fill="#00ac47"/><path d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.502l13.752 23.8z" fill="#ea4335"/><path d="m43.65 23.2h27.5c0-1.55-.4-3.1-1.2-4.5l-13.75-23.8c-.8-1.4-1.95-2.5-3.3-3.3z" fill="#00832d"/><path d="m43.65 53.05-13.75 23.8c1.35.8 2.5 1.9 3.3 3.3h27.5c0-1.55-.4-3.1-1.2-4.5z" fill="#2684fc"/><path d="m71.15 23.2-13.75 23.85h27.5c0-1.55-.4-3.1-1.2-4.5l-10.25-17.75-3.5-6.1c-.8-1.4-1.95-2.5-3.3-3.3z" fill="#ffba00"/>
                     </svg>
-                    Akses Google Drive
+                    <span class="lang" data-id="Akses Google Drive" data-en="Access Google Drive">Akses Google Drive</span>
                 </a>
             </div>
         </section>
 
         <section id="contact" class="reveal">
-            <div class="section-title">Mari Berdiskusi</div>
-            <p class="section-subtitle">Punya pertanyaan seputar analisis log atau ingin berkolaborasi? Jangan ragu untuk mengirim pesan.</p>
+            <div class="section-title lang" data-id="Mari Berdiskusi" data-en="Let's Connect">Mari Berdiskusi</div>
+            <p class="section-subtitle lang" data-id="Punya pertanyaan seputar analisis log atau ingin berkolaborasi? Jangan ragu untuk mengirim pesan." data-en="Have questions about log analysis or want to collaborate? Feel free to send a message.">Punya pertanyaan seputar analisis log atau ingin berkolaborasi? Jangan ragu untuk mengirim pesan.</p>
             <div class="contact-grid">
                 <div class="contact-card highlight">
-                    <h4>Kontak Langsung</h4>
-                    <p>Untuk respons tercepat, kirim email langsung ke alamat di bawah. Saya siap membantu terkait analisis ancaman, respon insiden, dan penguatan keamanan jaringan.</p>
+                    <h4 class="lang" data-id="Kontak Langsung" data-en="Direct Contact">Kontak Langsung</h4>
+                    <p class="lang" data-id="Untuk respons tercepat, kirim email langsung ke alamat di bawah. Saya siap membantu terkait analisis ancaman, respon insiden, dan penguatan keamanan jaringan." data-en="For the fastest response, send an email directly to the address below. I am ready to help with threat analysis, incident response, and network security enhancement.">Untuk respons tercepat, kirim email langsung ke alamat di bawah. Saya siap membantu terkait analisis ancaman, respon insiden, dan penguatan keamanan jaringan.</p>
                     <a href="mailto:rasyaadinata213@gmail.com" class="contact-email">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M20.5 5.5H3.5C2.94772 5.5 2.5 5.94772 2.5 6.5V17.5C2.5 18.0523 2.94772 18.5 3.5 18.5H20.5C21.0523 18.5 21.5 18.0523 21.5 17.5V6.5C21.5 5.94772 21.0523 5.5 20.5 5.5Z" fill="#D93025"/>
@@ -343,11 +322,11 @@
                     </a>
                 </div>
                 <div class="contact-card">
-                    <form class="contact-form" onsubmit="event.preventDefault(); alert('Ini simulasi form, silakan klik email langsung di sebelah kiri.');">
-                        <input type="text" placeholder="Nama Lengkap" required>
-                        <input type="email" placeholder="Alamat Email" required>
-                        <textarea rows="4" placeholder="Pesan Anda" required></textarea>
-                        <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+                    <form class="contact-form" id="contactForm">
+                        <input type="text" class="lang-ph" data-id="Nama Lengkap" data-en="Full Name" placeholder="Nama Lengkap" required>
+                        <input type="email" class="lang-ph" data-id="Alamat Email" data-en="Email Address" placeholder="Alamat Email" required>
+                        <textarea rows="4" class="lang-ph" data-id="Pesan Anda" data-en="Your Message" placeholder="Pesan Anda" required></textarea>
+                        <button type="submit" class="btn btn-primary lang" data-id="Kirim Pesan" data-en="Send Message">Kirim Pesan</button>
                     </form>
                 </div>
             </div>
@@ -367,10 +346,10 @@
             const currentTheme = html.getAttribute('data-theme');
             if (currentTheme === 'light') {
                 html.setAttribute('data-theme', 'dark');
-                themeBtn.textContent = '☀️'; // Ikon matahari untuk dark mode
+                themeBtn.textContent = '☀️'; 
             } else {
                 html.setAttribute('data-theme', 'light');
-                themeBtn.textContent = '🌙'; // Ikon bulan untuk light mode
+                themeBtn.textContent = '🌙'; 
             }
         });
 
@@ -380,7 +359,7 @@
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100; // Jarak sebelum elemen muncul
+                var elementVisible = 100;
 
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
@@ -388,18 +367,32 @@
             }
         }
         window.addEventListener("scroll", reveal);
-        reveal(); // Panggil sekali saat load
+        reveal(); 
 
-        // 3. Fitur Language Switcher (Visual Toggle)
+        // 3. Fitur Language Switcher (System Logic)
         const btnId = document.getElementById('btn-id');
         const btnEn = document.getElementById('btn-en');
+        let currentLang = 'id';
+
+        function updateLanguage(lang) {
+            currentLang = lang;
+            
+            // Ubah semua teks biasa
+            document.querySelectorAll('.lang').forEach(el => {
+                el.innerHTML = el.getAttribute(`data-${lang}`);
+            });
+            
+            // Ubah semua placeholder input/textarea
+            document.querySelectorAll('.lang-ph').forEach(el => {
+                el.setAttribute('placeholder', el.getAttribute(`data-${lang}`));
+            });
+        }
 
         btnId.addEventListener('click', () => {
             if (!btnId.classList.contains('active')) {
                 btnId.classList.add('active');
                 btnEn.classList.remove('active');
-                
-                // Nanti kamu bisa tambahkan script untuk ubah teks ke Bahasa Indonesia di sini
+                updateLanguage('id');
             }
         });
 
@@ -407,10 +400,19 @@
             if (!btnEn.classList.contains('active')) {
                 btnEn.classList.add('active');
                 btnId.classList.remove('active');
-                
-                // Nanti kamu bisa tambahkan script untuk ubah teks ke Bahasa Inggris di sini
+                updateLanguage('en');
             }
         });
+
+        // 4. Alert Form menyesuaikan bahasa
+        document.getElementById('contactForm').onsubmit = function(event) {
+            event.preventDefault();
+            if (currentLang === 'id') {
+                alert('Ini simulasi form, silakan klik email langsung di sebelah kiri.');
+            } else {
+                alert('This is a form simulation, please click the direct email on the left.');
+            }
+        };
     </script>
 </body>
 </html>
